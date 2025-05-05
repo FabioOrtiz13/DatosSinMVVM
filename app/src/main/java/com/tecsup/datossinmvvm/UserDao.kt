@@ -12,4 +12,7 @@ interface UserDao {
 
     @Insert
     suspend fun insert(user: User) // Inserta un nuevo usuario en la tabla
+
+    @Query("DELETE FROM User WHERE uid = (SELECT MAX(uid) FROM User)")
+    suspend fun deleteLastUser() // Elimina el último usuario
 }
